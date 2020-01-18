@@ -1,0 +1,2 @@
+# angular-firebase-contentful
+ 
