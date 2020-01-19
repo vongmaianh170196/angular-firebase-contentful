@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {createClient, Entry} from 'contentful';
 import { environment } from '../../environments/environment';
-import { Observable, from} from 'rxjs';
+import  {Observable, of, from} from 'rxjs';
 import * as marked from 'marked';
 @Injectable({
   providedIn: 'root'
@@ -22,11 +22,14 @@ export class ContentfulService {
   }
 
   // retrieves content mapped to its data fields
-  getContent() :Promise<Entry<any>[]>{
-    return this.client.getEntries()
-    .then(entries => entries.items)
+  // getContent() :Promise<Entry<any>[]>{
+  //   return this.client.getEntries()
+  //   .then(entries => entries.items)
+  // }
+  getContent() {
+    return from(this.client.getEntries())
+    //.then(entries => entries.items)
   }
-
   // convert markdown string to 
   markdownToHtml(md: string) {
     return marked(md)

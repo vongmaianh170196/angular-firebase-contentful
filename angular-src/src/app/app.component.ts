@@ -9,11 +9,11 @@ import { Entry } from 'contentful';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  lesson$:Entry<any>[] = [];
+  lesson$:Array<any>;
 
   constructor(private contentful: ContentfulService) { }
 
   ngOnInit() {
-    this.contentful.getContent().then(items => this.lesson$ = items)
+    this.contentful.getContent().subscribe(subsciber => this.lesson$ = subsciber.items)
   }
 }
